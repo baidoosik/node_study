@@ -1,0 +1,25 @@
+{
+  "name": "server-side-javascript",
+  "version": "1.0.0",
+  "description": "server side javascript tutorial",
+  "main": "index.js",
+  "scripts": {
+    "test": "testnode"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baidoosik/node_study.git"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "jordan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/baidoosik/node_study/issues"
+  },
+  "homepage": "https://github.com/baidoosik/node_study#readme",
+  "dependencies": {
+    "underscore": "^1.8.3"
+  }
+}
