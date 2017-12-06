@@ -9,7 +9,31 @@ app.get('/', function(req, res){
 app.get('/login', function(req, res){
   res.send('login node world!, <img src="/dining.png">');
 });
-
+app.get('/dynamic', function(req, res){
+  var lis ='';
+  for (var i=0; i<5; i++){
+    lis = lis + '<li>coding</li>';
+  }
+  var now = Date();
+  var output = `
+  <!doctype html>
+  <html>
+  <head
+    <meta charset="utf-8">
+    <title>Node app</title>
+  </head>
+  <body>
+    <h1> hello Node world</h1>
+    <img src='/dining.png'>
+    <ul>
+    ${lis}
+    </ul>
+    ${now}
+  </body>
+  </html>
+`;
+  res.send(output);
+})
 app.use(express.static('public'));
 // app 의 port 지정
 app.listen(3000, function(){
