@@ -3,6 +3,17 @@
 var express = require('express');
 var app = express();
 
+// template engine 셋팅
+app.set('view engine', 'jade');
+// template engine 디렉토리 설정
+app.set('views', './views');
+app.use(express.static('public'));
+
+
+//route and controller
+app.get('/template', function(req, res){
+  res.render('temp');
+})
 app.get('/', function(req, res){
   res.send('hello node world!');
 });
