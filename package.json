@@ -22,6 +22,7 @@
   "dependencies": {
     "express": "^4.16.2",
     "jade": "^1.11.0",
+    "nodemon": "^1.12.5",
     "underscore": "^1.8.3"
   }
 }

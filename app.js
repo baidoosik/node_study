@@ -12,7 +12,10 @@ app.use(express.static('public'));
 
 //route and controller
 app.get('/template', function(req, res){
-  res.render('temp');
+  var time = Date();
+  res.render('temp',{
+    'time':time
+  });
 })
 app.get('/', function(req, res){
   res.send('hello node world!');
@@ -45,6 +48,17 @@ app.get('/dynamic', function(req, res){
 `;
   res.send(output);
 })
+app.get('/topic', function(req,res){
+  var topics =[
+    'javascripts',
+    'node',
+    'express'
+  ]
+  var topic = topics[req.query.id];
+  res.send(topic);
+
+
+});
 app.use(express.static('public'));
 // app 의 port 지정
 app.listen(3000, function(){
