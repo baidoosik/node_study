@@ -56,9 +56,11 @@ app.get('/topic', function(req,res){
   ]
   var topic = topics[req.query.id];
   res.send(topic);
-
-
 });
+app.get('/topic/:id', function(req,res){
+  res.send(req.params.id)
+});
+
 app.use(express.static('public'));
 // app 의 port 지정
 app.listen(3000, function(){
