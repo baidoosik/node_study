@@ -20,11 +20,23 @@ app.post('/topic', function(req,res){
   var contents = req.body.description;
   fs.writeFile('data/'+title, contents, function(err){
     if(err){
+      // res.send 함수가 실행되면 controller는 종료.
       res.status(500).send('internal server error');
     }
     res.send('HI, SAVE YOUR DATA');
   });
 })
+
+app.get('/topic', function(req, res){
+  fs.readdir('data', function(err, files){
+    if(err){
+      console.log(err);
+    }
+    res.render('view', {
+      'files':files
+    });
+  })
+});
 
 app.listen(3000, function(){
   console.log('connnected');
