@@ -23,28 +23,56 @@ app.post('/topic', function(req,res){
       // res.send 함수가 실행되면 controller는 종료.
       res.status(500).send('internal server error');
     }
-    res.send('HI, SAVE YOUR DATA');
+    res.redirect('/topic')
   });
 })
 
-app.get('/topic', function(req, res){
+app.get(['/topic', '/topic/:filename'], function(req, res){
   fs.readdir('data', function(err, files){
     if(err){
       console.log(err);
     }
-    res.render('view', {
-      'files':files
-    });
-  })
-});
+    filename = req.params.filename;
 
-app.get('/topic/:filename', function(req,res){
-  filename = req.params.filename;
-  fs.readFile('./data/'+filename, (err, data) => {
-    if (err) throw err;
-    res.send(filename + ':' + data);
+    if(filename){
+      fs.readFile('./data/'+filename, (err, data) => {
+        if (err) throw err;
+        res.render('view', {
+          'files':files,
+          'title':filename,
+          'content':data
+        });
+      });
+    }
+    else{
+      res.render('view', {
+        'files':files,
+        'title':'HELLO',
+        'content':'NODE WORLD'
+      });
+    }
   });
 });
+
+// app.get('/topic/:filename', function(req,res){
+//   fs.readdir('data', function(err, files){
+//     if(err){
+//       console.log(err);
+//     }
+//
+//     filename = req.params.filename;
+//     fs.readFile('./data/'+filename, (err, data) => {
+//       if (err) throw err;
+//       res.render('view', {
+//         'files':files,
+//         'title':filename,
+//         'content':data
+//       });
+//     });
+//
+//   });
+//
+// });
 
 app.listen(3000, function(){
   console.log('connnected');
