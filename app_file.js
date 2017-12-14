@@ -38,6 +38,14 @@ app.get('/topic', function(req, res){
   })
 });
 
+app.get('/topic/:filename', function(req,res){
+  filename = req.params.filename;
+  fs.readFile('./data/'+filename, (err, data) => {
+    if (err) throw err;
+    res.send(filename + ':' + data);
+  });
+});
+
 app.listen(3000, function(){
   console.log('connnected');
 })
